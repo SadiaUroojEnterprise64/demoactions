@@ -1,11 +1,19 @@
+name: Node Continuous Integration
 on: push
 jobs: 
     build-node:
+        name: Build and run Node project
+        #GitHub server that runs the workflow
         runs-on: ubuntu-latest
+        #the job will be running on the node versions as below
         container: node:16
         steps:
+             #check the node version
             - run: node --version
             - run: npm --version
+            #tells the github to checkout to the current branch
             - uses: actions/checkout@v3
+            #install the packages
             - run: npm install
+            #run the main file of node
             - run: node app.js
